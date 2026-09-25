@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #0F172A;
+    --primary: #2563EB;
+    --secondary: #7C3AED;
+    --accent: #06B6D4;
+    --card: #FFFFFF;
+    --card-foreground: #0F172A;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark {
+    --background: #0F172A;
+    --foreground: #F8FAFC;
+    --primary: #3B82F6;
+    --secondary: #8B5CF6;
+    --accent: #22D3EE;
+    --card: #1E293B;
+    --card-foreground: #F8FAFC;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] font-sans antialiased selection:bg-primary/30;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-[var(--glass-bg)] backdrop-blur-md border border-[var(--glass-border)] shadow-soft rounded-xl;
+  }
+  
+  .glass-card {
+    @apply bg-[var(--card)]/80 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-soft rounded-xl;
+  }
+}
