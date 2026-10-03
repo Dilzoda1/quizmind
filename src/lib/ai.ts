@@ -12,6 +12,15 @@ const openai = new OpenAI({
 });
 
 export async function processDocumentText(text: string) {
+  if (!apiKey) {
+    const firstLine = text.split('\n').find((line) => line.trim())?.trim();
+    return {
+      title: firstLine?.substring(0, 80) || 'Untitled document',
+      summary: text.substring(0, 200),
+      topics: [] as string[],
+    };
+  }
+
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini", // or gpt-3.5-turbo
     messages: [
@@ -34,6 +43,10 @@ export async function processDocumentText(text: string) {
 }
 
 export async function generateQuizFromText(text: string, count: number, difficulty: string) {
+  if (!apiKey) {
+    throw new Error('OpenAI API key is missing. Add VITE_OPENAI_API_KEY to your .env file.');
+  }
+
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [

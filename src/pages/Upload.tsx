@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { extractTextFromFile } from '../lib/parser';
 import { processDocumentText } from '../lib/ai';
 import { supabase } from '../lib/supabase';
+import { ensureUserProfile } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
 
 export default function Upload() {
@@ -38,7 +39,9 @@ export default function Upload() {
 
       // 3. Save to Supabase
       const { data: userData } = await supabase.auth.getUser();
-      if (!userData.user) throw new Error("User not authenticated");
+      if (!userData.user) throw new Error('User not authenticated');
+
+      await ensureUserProfile(userData.user);
 
       const { data: doc, error: dbError } = await supabase.from('documents').insert({
         user_id: userData.user.id,
@@ -48,8 +51,7 @@ export default function Upload() {
 
       if (dbError) throw dbError;
 
-      // Navigate to dashboard or quiz generator
-      navigate('/dashboard');
+      navigate(`/document/${doc.id}`);
       
     } catch (err: any) {
       console.error(err);

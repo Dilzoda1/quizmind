@@ -1,8 +1,6 @@
-import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { Brain, Upload as UploadIcon, Home, BarChart2, LogIn, LogOut } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { cn } from '../lib/utils';
 
 export default function Layout({ session }: { session: any }) {
   const handleLogout = async () => {

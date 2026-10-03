@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import Layout from './components/Layout';
@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Upload from './pages/Upload';
+import DocumentPage from './pages/Document';
+import Demo from './pages/Demo';
 
 function App() {
   const [session, setSession] = useState<any>(null);
@@ -38,6 +40,8 @@ function App() {
           <Route path="login" element={!session ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="dashboard" element={session ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="upload" element={session ? <Upload /> : <Navigate to="/login" />} />
+          <Route path="document/:id" element={session ? <DocumentPage /> : <Navigate to="/login" />} />
+          <Route path="demo" element={<Demo />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { FileText, Plus, Brain, TrendingUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ export default function Dashboard() {
         .eq('user_id', userData.user.id)
         .order('created_at', { ascending: false });
 
+      if (error) console.error(error);
       if (data) setDocuments(data);
       setLoading(false);
     }
@@ -75,7 +76,7 @@ export default function Dashboard() {
                     <h3 className="font-semibold truncate" title={doc.title}>{doc.title}</h3>
                   </div>
                   <p className="text-sm text-gray-500 line-clamp-2">
-                    {doc.content.substring(0, 100)}...
+                    {doc.content.length > 100 ? `${doc.content.substring(0, 100)}…` : doc.content}
                   </p>
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-800">

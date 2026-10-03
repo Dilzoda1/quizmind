@@ -38,6 +38,7 @@
   }
   
   .glass-card {
-    @apply bg-[var(--card)]/80 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-soft rounded-xl;
+    background-color: color-mix(in srgb, var(--card) 80%, transparent);
+    @apply backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-soft rounded-xl;
   }
 }

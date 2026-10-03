@@ -10,13 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rolldown/pluginutils": "^1.0.1",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.117.2",
+    "autoprefixer": "^10.6.1",
+    "clsx": "^2.1.1",
+    "esbuild": "^0.28.2",
+    "framer-motion": "^14.0.0",
+    "lightningcss-win32-x64-msvc": "^1.33.0",
+    "lucide-react": "^1.51.0",
     "mammoth": "^1.12.3",
     "openai": "^7.23.0",
     "pdfjs-dist": "^6.3.289",
+    "postcss": "^8.5.28",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

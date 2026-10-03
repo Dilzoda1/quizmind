@@ -1,32 +1,34 @@
-# React + TypeScript + Vite
+# QuizAI (QuizMind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+AI-powered study app: upload PDF, DOCX, or TXT notes, save them to Supabase, and generate quizzes with OpenAI.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Copy `.env.example` to `.env` and fill in:
 
-## React Compiler
+   - `VITE_SUPABASE_URL` — Supabase project URL  
+   - `VITE_SUPABASE_ANON_KEY` — Supabase anon key  
+   - `VITE_OPENAI_API_KEY` — OpenAI API key (required for quiz generation)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. In the Supabase SQL editor, run `supabase/schema.sql` (tables, RLS, signup trigger).
 
-## Expanding the Oxlint configuration
+3. In Supabase Authentication → Providers, enable Email and/or Google if you use Google login on the login page.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+4. Install and run:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Open http://localhost:5173 — use **Try Demo** without an account, or sign in to upload documents.
+
+## Scripts
+
+- `npm run dev` — development server  
+- `npm run build` — production build  
+- `npm run preview` — preview production build  
+
+## Notes
+
+- OpenAI is called from the browser for this prototype (`dangerouslyAllowBrowser`). For production, move AI calls to a backend.
